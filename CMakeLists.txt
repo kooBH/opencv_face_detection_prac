@@ -10,6 +10,8 @@ set(INCL)
 list(APPEND SRC 
   dnn.cpp
   )
+
+if(UNIX )  
 list(APPEND LINKLIBS 
   ${PROJECT_SOURCE_DIR}/lib/libopencv_core.so.4.2.0
   ${PROJECT_SOURCE_DIR}/lib/libopencv_highgui.so.4.2.0
@@ -18,10 +20,21 @@ list(APPEND LINKLIBS
   ${PROJECT_SOURCE_DIR}/lib/libopencv_videoio.so.4.2.0
   ${PROJECT_SOURCE_DIR}/lib/libopencv_dnn.so.4.2.0
   )
+elseif(WIN32)
+list(APPEND LINKLIBS 
+  ${PROJECT_SOURCE_DIR}/lib/opencv_world420.lib
+  )
+endif()
 list(APPEND COMPILE_OPTION )
+if(UNIX)
 list(APPEND INCL 
   /usr/local/include/opencv4
   )
+elseif(WIN32)
+list(APPEND INCL 
+  ${PROJECT_SOURCE_DIR}/include
+  )
+endif()
 
 add_executable(${PROJECT_NAME} ${SRC})
 
