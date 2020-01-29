@@ -8,7 +8,8 @@ set(SRC)
 set(INCL)
 
 list(APPEND SRC 
-  dnn.cpp
+  #dnn.cpp
+  landmark.cpp
   )
 
 if(UNIX )  
@@ -19,6 +20,9 @@ list(APPEND LINKLIBS
   ${PROJECT_SOURCE_DIR}/lib/libopencv_objdetect.so.4.2.0
   ${PROJECT_SOURCE_DIR}/lib/libopencv_videoio.so.4.2.0
   ${PROJECT_SOURCE_DIR}/lib/libopencv_dnn.so.4.2.0
+  ${PROJECT_SOURCE_DIR}/lib/libopencv_face.so.4.2.0
+
+  ${PROJECT_SOURCE_DIR}/lib/libdlib.so.19.19.0
   )
 elseif(WIN32)
 list(APPEND LINKLIBS 
@@ -28,7 +32,8 @@ endif()
 list(APPEND COMPILE_OPTION )
 if(UNIX)
 list(APPEND INCL 
-  /usr/local/include/opencv4
+  #/usr/local/include/opencv4
+  ${PROJECT_SOURCE_DIR}/include
   )
 elseif(WIN32)
 list(APPEND INCL 
