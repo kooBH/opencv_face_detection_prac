@@ -7,9 +7,12 @@ set(COMPILE_OPTION)
 set(SRC)
 set(INCL)
 
+add_subdirectory(include/dlib dlib_build)
+
 list(APPEND SRC 
   #dnn.cpp
-  landmark.cpp
+  #landmark.cpp
+  dlib.cpp
   )
 
 if(UNIX )  
@@ -40,7 +43,7 @@ list(APPEND LINKLIBS
   #opencv_dnn
   #opencv_face
 
-  ${PROJECT_SOURCE_DIR}/lib/libdlib.so.19.19.0
+  #  ${PROJECT_SOURCE_DIR}/lib/libdlib.so.19.19.0
   )
 elseif(WIN32)
 list(APPEND LINKLIBS 
@@ -51,7 +54,7 @@ list(APPEND COMPILE_OPTION )
 if(UNIX)
 list(APPEND INCL 
   /usr/local/include/opencv4
-  #${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/include
   )
 elseif(WIN32)
 list(APPEND INCL 
@@ -67,7 +70,7 @@ target_include_directories(${PROJECT_NAME}
 )
 
 LINK_DIRECTORIES( /usr/local/lib/ )
-target_link_libraries(${PROJECT_NAME} ${LINKLIBS})
+target_link_libraries(${PROJECT_NAME} ${LINKLIBS} dlib::dlib)
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILE_OPTION} )
 
 
